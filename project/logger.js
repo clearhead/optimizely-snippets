@@ -6,6 +6,8 @@
 (function() {
   'use strict';
 
+  /*jshint latedef:false*/
+
   // activate when clearhead-debug
   if ((/clearhead-debug$/).test(location.href)) {
     setCookie('chdebug', 'true', 365);
@@ -17,25 +19,25 @@
   }
 
   window.clearhead = window.clearhead || {};
-  window['optimizely'] = window['optimizely'] || [];
-  window['optimizely'].push(["log"]);
-
-  window.alertifyQueue = [];
+  window.optimizely = window.optimizely || [];
+  window.optimizely.push(['log']);
+  var alertifyQueue = window.alertifyQueue = [];
 
   (function() {
     var oldLog = window.console.log;
     window.console.log = function(message) {
       alertifyQueue.push(message);
-      oldLog.apply(console, arguments);
+      oldLog.apply(window.console, arguments);
     };
   })();
 
   loadCss('https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.11/alertify.core.css');
   loadCss('https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.11/alertify.default.css');
-  (function load(){
+  (function load() {
     if (!document.body) return setTimeout(load, 50);
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.11/alertify.min.js',
-      function () {
+      function() {
+        /*global alertify, optimizely*/
         alertify.set({
           delay: 10000
         });
@@ -57,15 +59,15 @@
 
   function log() {
     var arg = arguments[0];
-    if (!arg || arg.indexOf('Optimizely')!=0) return;
+    if (!arg || arg.indexOf('Optimizely') !== 0) return;
     arg = arg.substr('Optimizely / '.length);
-    (/API \/ Tracking/).test(arg) &&
+    if ((/API \/ Tracking/).test(arg))
       window.alertify.success(arg);
-    (/Tracker \/ Tracking/).test(arg) &&
+    if ((/Tracker \/ Tracking/).test(arg))
       window.alertify.success(arg);
-    (/Evaluator \/ Bound event/).test(arg) &&
+    if ((/Evaluator \/ Bound event/).test(arg))
       window.alertify.error(arg);
-    (/API \/ Called/).test(arg) &&
+    if ((/API \/ Called/).test(arg))
       window.alertify.error(arg);
   }
 
