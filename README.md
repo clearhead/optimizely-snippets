@@ -1,4 +1,4 @@
-# optimizely-snippets
+# optimizely-snippets [![Circle CI](https://circleci.com/gh/clearhead/optimizely-snippets/tree/master.svg?style=svg)](https://circleci.com/gh/clearhead/optimizely-snippets/tree/master)
 
 Merge of two previously separate repos
 
