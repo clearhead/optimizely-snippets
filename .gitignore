@@ -1,0 +1,16 @@
+.DS_Store
+.buildpath
+.project
+.settings
+.sass-cache
+*.bak
+*.orig*.class
+*.pyc
+*.pyo
+
+node_modules
+
+# Sublime
+*.sublime-workspace
+
+npm-debug.log
