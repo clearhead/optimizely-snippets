@@ -14,9 +14,7 @@
   "homepage": "https://github.com/clearhead/optimizely-snippets",
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-csslint": "^0.1.5",
     "gulp-if": "^1.2.5",
-    "gulp-jsbeautifier": "0.0.4",
     "gulp-jshint": "^1.9.0",
     "gulp-notify": "^2.1.0",
     "gulp-watch": "^3.0.0",
