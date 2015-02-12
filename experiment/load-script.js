@@ -10,7 +10,7 @@
  * ```
  */
 window.clearhead = window.clearhead || {};
-window.clearhead.loadScript = function (url, callback) {
+window.clearhead.loadScript = function(url, callback) {
   'use strict';
   var ga = document.createElement('script');
   ga.type = 'text/javascript';

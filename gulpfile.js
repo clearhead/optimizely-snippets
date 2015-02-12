@@ -3,6 +3,7 @@ var jshint = require('gulp-jshint');
 var gulp = require('gulp');
 var gif = require('gulp-if');
 var notify = require('gulp-notify');
+var karma = require('karma').server;
 
 var paths = {
   js: ['./**/*.js', '!./node_modules/**']
@@ -26,8 +27,8 @@ var notifyJsHint = function(file) {
   return file.relative.split('/').pop() + ' (' + file.jshint.results.length + ' errors)\n' + errors;
 };
 
-gulp.task('default', ['jslint']); // `gulp` from cli
-gulp.task('test', ['jslint']); // `gulp test` from cli
+gulp.task('default', ['test']); // `gulp` from cli
+gulp.task('test', ['jslint', 'karma']); // `gulp test` from cli
 gulp.task('watch', function() {
   gulp.watch(paths.js, ['jslint']);
 });
@@ -38,4 +39,14 @@ gulp.task('jslint', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gif(isCI, jshint.reporter('fail')))
     .pipe(notify(notifyJsHint));
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('karma', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
 });
