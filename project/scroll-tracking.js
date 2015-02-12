@@ -44,19 +44,22 @@
 
 *******************************************************************************/
 
-(function(w, d, $){
+(function poll(){
+  if (!window.optimizely || !window.optimizely.$)
+    return setTimeout(poll, 50);
+  var $ = window.optimizely.$;
 
   var report = function(quarter){
 
-    var pageID = w.optimizelyScrollTrackerID ? w.optimizelyScrollTrackerID : w.location.pathname.replace(/\/$/, '');
+    var pageID = window.optimizelyScrollTrackerID ? window.optimizelyScrollTrackerID : window.location.pathname.replace(/\/$/, '');
 
-    w.optimizely = w.optimizely || [];
+    window.optimizely = window.optimizely || [];
 
     //report with raw optimizely
-    w.optimizely.push(['trackEvent', pageID + ' ' + quarter + ' quarter viewed']);
+    window.optimizely.push(['trackEvent', pageID + ' ' + quarter + ' quarter viewed']);
 
     //report to ga (optional)
-    //w.ga('send', 'event', 'scroll', pageID, quarter + ' quarter viewed');
+    //window.ga('send', 'event', 'scroll', pageID, quarter + ' quarter viewed');
 
   };
 
@@ -68,21 +71,21 @@
     thirdQuarterViewed = false;
     fourthQuarterViewed = false;
 
-    quarters = $(d).height() / 4;
+    quarters = $(document).height() / 4;
 
-    $(w).scroll(function(){
+    $(window).scroll(function(){
 
-      if(w.pageYOffset <= quarters * 2 && w.pageYOffset > quarters){
+      if(window.pageYOffset <= quarters * 2 && window.pageYOffset > quarters){
         if(!secondQuarterViewed){
           report('second');
           secondQuarterViewed = true;
         }
-      } else if(w.pageYOffset <= quarters * 3 && w.pageYOffset > quarters * 2){
+      } else if(window.pageYOffset <= quarters * 3 && window.pageYOffset > quarters * 2){
         if(!thirdQuarterViewed){
           report('third');
           thirdQuarterViewed = true;
         }
-      } else if (!fourthQuarterViewed && w.pageYOffset > quarters * 3){
+      } else if (!fourthQuarterViewed && window.pageYOffset > quarters * 3){
         report('fourth');
         fourthQuarterViewed = true;
       }
@@ -91,4 +94,4 @@
 
   });
 
-})(window, document, jQuery);
+})();
