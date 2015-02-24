@@ -1,3 +1,5 @@
+window.clearhead = window.clearhead || {};
+
 // Extends the window.clearhead object
 window.clearhead.extend = function() {
   'use strict';
@@ -30,6 +32,8 @@ window.clearhead.extend('exp01.v1', function(exp01) {
   var v1 = this;
 
   v1.someMethod = function(){};
+  exp01.someOtherMethod = function(){};
 });
 
 window.clearhead.exp01.v1.someMethod();
+window.clearhead.exp01.someOtherMethod();
