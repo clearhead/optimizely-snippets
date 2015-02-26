@@ -30,7 +30,7 @@ var notifyJsHint = function(file) {
 gulp.task('default', ['test']); // `gulp` from cli
 gulp.task('test', ['jslint', 'karma']); // `gulp test` from cli
 gulp.task('watch', function() {
-  gulp.watch(paths.js, ['jslint']);
+  gulp.watch(paths.js, ['jslint', 'karma']);
 });
 
 gulp.task('jslint', function() {
