@@ -4,6 +4,7 @@ Batch an array into chunks of size n
     var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     var chunks = batch(arr, 3); => [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
 */
+/*jshint unused:false*/
 
 var batch = function(a, n) {
   var batches = [];
