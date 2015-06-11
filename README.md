@@ -2,8 +2,8 @@
 
 Merge of two previously separate repos
 
-project-javascripts
-===================
+./project-javascripts
+=====================
 
 A collection of clearhead.me snippets that can be used in an optimizely project's [Project Javascript](https://community.optimizely.com/t5/Product-What-s-New/A-new-feature-to-help-you-run-advanced-experiments-faster/ba-p/8739) configuration.
 
@@ -18,8 +18,8 @@ A helpful logging tool for debugging and goals. Activate by adding `?clearhead-d
 Tracks which quarter of the page the visitor scrolled to.
 
 
-clearhead-snippets
-==================
+./clearhead-snippets
+====================
 
 Helper functions not found in optimizely's api. Paste needed code in your experiment's global js. Supports IE9+.
 
